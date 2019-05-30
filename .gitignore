@@ -1,0 +1,5 @@
+*.db
+aggregator
+!aggregator/
+aggregator-server
+!aggregator-server/
