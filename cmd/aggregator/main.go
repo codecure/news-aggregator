@@ -74,7 +74,11 @@ func main() {
 	rule := parseRule(*rulePtr)
 
 	fp := gofeed.NewParser()
-	feed, _ := fp.ParseURL(*feedPtr)
+	feed, err := fp.ParseURL(*feedPtr)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	processedFeed := applyRule(*feed, rule)
 
 	db := database.GetDB(*dbPathPtr)
