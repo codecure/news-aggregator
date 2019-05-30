@@ -87,6 +87,6 @@ func main() {
 	db.AutoMigrate(&database.NewsItem{})
 
 	for _, item := range processedFeed {
-		db.Create(&item)
+		db.FirstOrCreate(&item, &item)
 	}
 }
