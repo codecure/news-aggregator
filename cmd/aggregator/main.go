@@ -69,7 +69,7 @@ func main() {
 
 	feedPtr := flag.String("feed", "", "Feed URL")
 	rulePtr := flag.String("rule", "", "Parsing rule")
-	dbPathPtr := flag.String("db", "", "Directory to store DB file")
+	dbDirPtr := flag.String("db", "", "Directory to store DB file")
 	flag.Parse()
 	rule := parseRule(*rulePtr)
 
@@ -81,7 +81,7 @@ func main() {
 
 	processedFeed := applyRule(*feed, rule)
 
-	db := database.GetDB(*dbPathPtr)
+	db := database.GetDB(*dbDirPtr)
 	defer db.Close()
 
 	db.AutoMigrate(&database.NewsItem{})

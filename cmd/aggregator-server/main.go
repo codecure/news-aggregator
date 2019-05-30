@@ -46,10 +46,10 @@ func main() {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
-	dbPathPtr := flag.String("db", "", "Directory to store DB file")
+	dbDirPtr := flag.String("db", "", "Directory to store DB file")
 	flag.Parse()
 
-	db = database.GetDB(*dbPathPtr)
+	db = database.GetDB(*dbDirPtr)
 	defer db.Close()
 
 	db.AutoMigrate(&database.NewsItem{})
